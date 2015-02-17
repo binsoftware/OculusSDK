@@ -1,0 +1,17 @@
+[package]
+name = "ovr-sys"
+version = "0.4.4"
+authors = ["Oculus VR"]
+
+build = "build.rs"
+
+description = "Cargo build scripts for the Oculus SDK. The latest version of the Oculus SDK is available at http://developer.oculusvr.com. Please see the Oculus SDK Overview in the OculusSDK/Doc/ directory for more information."
+documentation = "http://developer.oculus.com"
+homepage = "http://developer.oculus.com"
+repository = "https://github.com/ryanstew/OculusSDK"
+readme = "readme.txt"
+license = "Oculus VR, LLC Software Development Kit License Agreement"
+
+[lib]
+name = "ovr-sys"
+path = "lib.rs"
