@@ -1,10 +1,6 @@
-#![feature(io)]
-#![feature(path)]
-
-use std::old_io::Command;
-use std::old_io::process::StdioContainer;
-use std::old_io::fs;
-use std::old_path::Path;
+use std::process::{Command, Stdio};
+use std::fs;
+use std::path::Path;
 
 trait PlatformArgs {
     fn platform_args<'a>(&'a mut self) -> &'a mut Self;
@@ -49,9 +45,9 @@ fn main() {
         .arg("-DBUILD_SHARED_LIBS=TRUE")
         .arg("-DOCULUS_BUILD_SAMPLES=FALSE")
         .arg(env!("CARGO_MANIFEST_DIR"))
-        .cwd(&Path::new(env!("OUT_DIR")))
-        .stdout(StdioContainer::InheritFd(1))
-        .stderr(StdioContainer::InheritFd(2))
+        .current_dir(&Path::new(env!("OUT_DIR")))
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit())
         .status()
         .ok().expect("CMake failed for Oculus SDK");
 
@@ -60,9 +56,9 @@ fn main() {
         .arg(&Path::new(env!("OUT_DIR")))
         .arg("--config").arg("Release")
         .arg("--clean-first")
-        .cwd(&Path::new(env!("OUT_DIR")))
-        .stdout(StdioContainer::InheritFd(1))
-        .stderr(StdioContainer::InheritFd(2))
+        .current_dir(&Path::new(env!("OUT_DIR")))
+        .stdout(Stdio::inherit())
+        .stderr(Stdio::inherit())
         .status()
         .ok().expect("CMake --build failed for Oculus SDK");
 
