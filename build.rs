@@ -26,7 +26,7 @@ impl PlatformArgs for Command {
 #[cfg(not(windows))]
 fn export() {
     let lib = Path::new(env!("OUT_DIR")).join("output");
-    println!("cargo:rustc-flags=-L {} -l ovr:dylib", lib.as_str().expect("Invalid path string"));
+    println!("cargo:rustc-flags=-L {} -l ovr:dylib", lib.to_str().expect("Invalid path string"));
 }
 
 #[cfg(windows)]
