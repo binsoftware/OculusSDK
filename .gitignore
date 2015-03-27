@@ -32,3 +32,7 @@ Firmware
 # directory.
 # See: https://help.github.com/articles/ignoring-files
 
+# Cargo-specific ignores
+
+Cargo.lock
+target
